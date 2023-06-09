@@ -1,0 +1,224 @@
+<div class="container text-white my-3">
+    <div class="row">
+        <div class="col-md-8 table-responsive d-sm-none d-md-block d-none d-sm-block">
+            <div class="bg-info text-center font-weight-bold py-2">
+                Conversor de divisas
+            </div>
+            <table class="table text-center border">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">
+                            <img src="../../../assets/icono_bandera_usa.jpg" alt="..." width="25px" height="20px">
+                            <div>USD</div>
+                        </th>
+                        <th scope="col">
+                            <img src="../../../assets/icono_bandera_euro.jpg" alt="..." width="25px" height="20px">
+                            <div>EURO</div>
+                        </th>
+                        <th scope="col">
+                            <img src="../../../assets/icono_bandera_brazil.jpg" alt="..." width="25px" height="20px">
+                            <div>BRL</div>
+                        </th>
+                        <th scope="col">
+                            <img src="../../../assets/icono_bandera_argentina.jpg" alt="..." width="25px" height="20px">
+                            <div>ARS</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <img src="../../../assets/icono_bandera_usa.jpg" alt="..." width="25px" height="20px">
+                        </th>
+                        <td class="font-weight-bold">
+                            <div>1 USD</div>
+                            <div>inverse</div>
+                        </td>
+                        <td>
+                            <div>1.00000</div>
+                            <div>1.00000</div>
+                        </td>
+                        <td>
+                            <div>0.91921</div>
+                            <div>1.08789</div>
+                        </td>
+                        <td>
+                            <div>5.23280</div>
+                            <div>0.19110</div>
+                        </td>
+                        <td>
+                            <div>65.8030</div>
+                            <div>0.01519</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <img src="../../../assets/icono_bandera_euro.jpg" alt="..." width="25px" height="20px">
+                        </th>
+                        <td class="font-weight-bold">
+                            <div>1 EUR</div>
+                            <div>inverse</div>
+                        </td>
+                        <td>
+                            <div>1.08789</div>
+                            <div>0.91921</div>
+                        </td>
+                        <td>
+                            <div>1.00000</div>
+                            <div>1.00000</div>
+                        </td>
+                        <td>
+                            <div>5,68748</div>
+                            <div>0.17582</div>
+                        </td>
+                        <td>
+                            <div>71,5206</div>
+                            <div>0.01398</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <img src="../../../assets/icono_bandera_brazil.jpg" alt="..." width="25px" height="20px">
+                        </th>
+                        <td class="font-weight-bold">
+                            <div>1 BRL</div>
+                            <div>inverse</div>
+                        </td>
+                        <td>
+                            <div>0.19110</div>
+                            <div>5.23280</div>
+                        </td>
+                        <td>
+                            <div>0.17582</div>
+                            <div>5,68748</div>
+                        </td>
+                        <td>
+                            <div>1.00000</div>
+                            <div>1.00000</div>
+                        </td>
+                        <td>
+                            <div>12.5679</div>
+                            <div>0.07956</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <img src="../../../assets/icono_bandera_argentina.jpg" alt="..." width="25px" height="20px">
+                        </th>
+                        <td class="font-weight-bold">
+                            <div>1 ARS</div>
+                            <div>inverse</div>
+                        </td>
+                        <td>
+                            <div>0.01519</div>
+                            <div>65.8030</div>
+                        </td>
+                        <td>
+                            <div>0.01398</div>
+                            <div>71,5206</div>
+                        </td>
+                        <td>
+                            <div>0.07956</div>
+                            <div>12.5679</div>
+                        </td>
+                        <td>
+                            <div>1.00000</div>
+                            <div>1.00000</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="row bg-info border-bottom text-center py-2 font-weight-bold">
+                <div class="col-12">
+                    Conversor de divisas
+                </div>
+            </div>
+            <div class="row bg-info">
+                <div class="col-12">
+                    <form>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" [(ngModel)]="transaccion.emailCliente">
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Cantidad" [(ngModel)]="transaccion.cantidadOrigen">
+                        </div>
+                        <div class="form-group">
+                            <label for="cantidad">Tasa de Conversion</label>
+                            <input type="number" class="form-control" id="tasa" name="tasa" placeholder="Tasa de Conversion" [(ngModel)]="transaccion.tasaConversion">
+                        </div>
+                        <div class="form-group">
+                            <label for="origen">De</label>
+                            <select class="form-control" id="origen" name="origen" [(ngModel)]="transaccion.monedaOrigen">
+                                <option>USD Dólares EEUU</option>
+                                <option>EUROS</option>
+                                <option>BRL BRAZIL</option>
+                                <option>ARS Pesos Argentinos</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="destino">A</label>
+                            <select class="form-control" id="destino" name="destino" [(ngModel)]="transaccion.monedaDestino">
+                                <option>USD Dólares EEUU</option>
+                                <option>EUROS</option>
+                                <option>BRL BRAZIL</option>
+                                <option>ARS Pesos Argentinos</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="resultado" name="resultado" [(ngModel)]="transaccion.cantidadDestino">
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-block btn-warning mb-3" (click)="agregarTransaccion()">
+                            Dar alta
+                        </button>
+                        <button type="submit" class="btn btn-block btn-warning mb-3" (click)="obtenerTransacciones()">
+                            Recuperar Transacciones
+                        </button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-3 table-responsive">
+        <select class="form-select" name="moneda" id="moneda" [(ngModel)]="moneda">
+            <option value="ARS">ARS Pesos Argentinos</option>
+            <option value="BRL">BRL BRAZIL</option>
+            <option value="USD">USD Dólares EEUU</option>
+            <option value="EUROS">EUROS</option>
+        </select>
+        <br>
+        <button type="submit" class="btn btn-block btn-warning mb-3" (click)="obtenerTransaccionesMoneda()">
+            Recuperar por Filtro
+        </button>
+        <div>
+            Consultas
+        </div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Moneda Origen</th>
+                <th scope="col">Cantidad Origen</th>
+                <th scope="col">Moneda Destino</th>
+                <th scope="col">Cantidad Destino</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of arrayTransaccion">
+                  <td>{{item.monedaOrigen}}</td>
+                  <td>{{item.cantidadOrigen}}</td>
+                  <td>{{item.monedaDestino}}</td>
+                  <td>{{item.cantidadDestino}}</td>
+                </tr>
+              </tbody>
+          </table>
+    </div>
+</div>

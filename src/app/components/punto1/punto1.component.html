@@ -1,0 +1,128 @@
+<h1 class="display-1">Productos</h1>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Ver Carrito
+    <i class="bi bi-cart-check"></i>
+</button>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newProducto">
+    Agregar Producto
+    <i class="bi bi-cart-check"></i>
+</button>
+
+<div class="row">
+    <div class="col-12">
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../../../assets/gabinete.jpg" class="d-block w-25 mx-auto img-fluid" >
+                  </div>
+              <div class="carousel-item" *ngFor="let p of arrayProducto">
+                <img src={{p.imagen}} class="d-block w-25 mx-auto img-fluid " >
+              </div>
+              
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Siguiente</span>
+            </button>
+          </div>
+    </div>
+</div>
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let producto of listaProd">
+        <div class="card">
+            <img src={{producto.img}} class="card-img-top img-fluid rounded img-thumbnail" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{producto.nombre}}</h5>
+                <p class="card-text">{{producto.descripcion}}
+                    <br>
+                    {{producto.precio}}k$
+                </p>
+                <a href="#" class="btn btn-primary" (click)="agregarCarrito(producto)">Añadir al carrito</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Carrito</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row row-cols-1 row-cols-md-1 g-4">
+                    <div class="col" *ngFor="let producto of arrayCarrito">
+                        <div class="card">
+                            <img src={{producto.img}} class="card-img-top img-fluid rounded img-thumbnail" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{producto.nombre}}</h5>
+                                <p class="card-text">{{producto.descripcion}} {{producto.precio}}k$</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p>Total: {{total}}k$</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="newProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Producto</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="nombreProd" class="form-label">Nombre del Producto</label>
+                        <input type="text" class="form-control" id="nombreProd" name="nombre" [(ngModel)]="producto.nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcionProd" class="form-label">Descripcion</label>
+                        <input type="text" class="form-control" id="descripcionProd" name="descripcion" [(ngModel)]="producto.descripcion">
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagenProd" class="form-label">Imagen del Producto</label>
+                        <input type="text" class="form-control" id="imagenProd" name="imagen" [(ngModel)]="producto.imagen">
+                    </div>
+                    <div class="mb-3">
+                        <label for="precioProd" class="form-label">Precio</label>
+                        <input type="text" class="form-control" id="precioProd" name="precio" [(ngModel)]="producto.precio">
+                    </div>
+                    <div class="mb-3">
+                        <label for="stockProd" class="form-label">Stock</label>
+                        <input type="text" class="form-control" id="stockProd" name="stock" [(ngModel)]="producto.stock">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="destacado" name="destacado" [(ngModel)]="producto.destacado">
+                        <label class="form-check-label" for="destacado">Destacado</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="agregarProducto()" >Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
