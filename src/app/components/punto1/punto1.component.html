@@ -16,9 +16,17 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="../../../assets/gabinete.jpg" class="d-block w-25 mx-auto img-fluid" >
+                    <div class="carousel-caption d-none d-md-block text-black">
+                        <h5>Gabinete</h5>
+                        <p>Gabinete con luces LED</p>
+                      </div>
                   </div>
               <div class="carousel-item" *ngFor="let p of arrayProducto">
                 <img src={{p.imagen}} class="d-block w-25 mx-auto img-fluid " >
+                <div class="carousel-caption d-none d-md-block text-black">
+                    <h5>{{p.nombre}}</h5>
+                    <p>{{p.descripcion}}</p>
+                  </div>
               </div>
               
             </div>

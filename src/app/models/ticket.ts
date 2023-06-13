@@ -1,17 +1,17 @@
+import { Espectador } from "./espectador";
+
 export class Ticket {
     _id!: string;
-    dni!: number;
-    precioReal!: number;
-    tipoEspectador!: string;
-    fechaCobro!: Date;
-    precioCobrado!: number;
+    precioTicket!: number;
+    categoriaEspectador!: string;
+    fechaCompra!: Date;
+    espectador!: Espectador;
 
-    constructor(id?: string, dni?: number, precioReal?: number, tipoEspectador?: string, fechaCobro?: Date, precioCobrado?: number) {
+    constructor(id?: string, precioTicket?: number, categoriaEspectador?: string, fechaCompra?: Date, espectador?: Espectador) {
         this._id = id!;
-        this.dni = dni!;
-        this.precioReal = precioReal!;
-        this.tipoEspectador = tipoEspectador!;
-        this.fechaCobro = fechaCobro!;
-        this.precioCobrado = precioCobrado!;
+        this.precioTicket = precioTicket!;
+        this.categoriaEspectador = categoriaEspectador!;
+        this.fechaCompra = fechaCompra!;
+        this.espectador = new Espectador;
     }
 }

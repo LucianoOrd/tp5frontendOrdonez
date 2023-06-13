@@ -9,26 +9,21 @@ import { tick } from '@angular/core/testing';
 })
 export class TicketService {
   urlBase:string = "http://localhost:3000/api/ticket";
-  arrayTicket: Array<Ticket>;
-
 
   constructor(private _http:HttpClient) {
-    this.arrayTicket = new Array<Ticket>();
   }
 
-  generarId(): string {
-    const random = Math.random().toString(36).substring(2);
-    const fecha = Date.now().toString(36)
-
-    return random + fecha
+  addTicket(ticket: Ticket):Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json'
+      })
+    };
+    var body = JSON.stringify(ticket);
+    return this._http.post(this.urlBase, body, httpOptions);
   }
 
-  agregarTicket(tic: Ticket): void {
-    tic._id = this.generarId();
-    this.arrayTicket.push(tic);
-  }
-
-  obtenerTickets():Observable<any> {
+  getTickets():Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
 
@@ -37,13 +32,13 @@ export class TicketService {
     return this._http.get(this.urlBase , httpOptions );
   }
 
-  obtenerTicketsEspectador():Observable<any> {
+  getTicketsEspectador(categoria: String):Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
 
       })
     };   
-    return this._http.get(this.urlBase+"/espectador" , httpOptions );
+    return this._http.get(this.urlBase+"/espectador/"+categoria, httpOptions );
   }
 
   deleteTicket(ticket:Ticket):Observable<any>{
@@ -52,10 +47,16 @@ export class TicketService {
 
       })
     };   
-    return this._http.delete(this.urlBase + ticket._id , httpOptions );
+    return this._http.delete(this.urlBase +"/"+ ticket._id , httpOptions );
   }
 
-  editarTicket(t: Ticket): void{
-    this.arrayTicket = this.arrayTicket.map(tic => tic._id === t._id ? t : tic)
+  editTicket(ticket: Ticket): Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json'
+      })
+    };
+    var body = JSON.stringify(ticket);
+    return this._http.put(this.urlBase +"/"+ ticket._id, body, httpOptions);
   }
 }

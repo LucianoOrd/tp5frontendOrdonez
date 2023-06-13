@@ -1,109 +1,93 @@
 <div class="container">
-    <form class="row g-3">
+    <form novalidate (ngSubmit)="agregarEditarTicket()" #ticketForm="ngForm" class="row g-3">
         <div class="col-md-6">
-            <label for="inputDni" class="form-label">DNI</label>
-            <input [(ngModel)]="ticket.dni" name="dni" type="number" class="form-control" id="inputDni"
-                placeholder="12345678">
+            <label for="inputPrecioR" class="form-label">Precio Ticket</label>
+            <input [(ngModel)]="ticket.precioTicket" required name="precior" type="number" class="form-control"
+                id="inputPrecioR" placeholder="123$">
         </div>
         <div class="col-md-6">
-            <label for="inputPrecioR" class="form-label">Precio Real</label>
-            <input [(ngModel)]="ticket.precioReal" (change)="calcularPrecio()" name="precior" type="number"
-                class="form-control" id="inputPrecioR" placeholder="123$">
-        </div>
-        <div class="col-md-10">
             <label for="inputTipoEspectador" class="form-label">Tipo Espectador</label>
-            <select [(ngModel)]="ticket.tipoEspectador" (change)="calcularPrecio()" name="tipoespectador"
-                id="inputTipoEspectador" class="form-select">
+            <select [(ngModel)]="ticket.categoriaEspectador" name="tipoEspectador" id="inputTipoEspectador"
+                class="form-select">
                 <option value="l">Local</option>
                 <option value="e">Extranjero</option>
             </select>
         </div>
+        <div class="col-md-10">
+            <label for="inputEspectador" class="form-label">Espectador</label>
+            <select [(ngModel)]="ticket.espectador" name="espectador" id="inputEspectador" class="form-select">
+                <option *ngFor="let e of arrayEspectador" [ngValue]="e">{{e.dni}} {{e.nombre}} {{e.apellido}}</option>
+            </select>
+        </div>
         <div class="col-md-2">
             <label for="inputFecha" class="form-label">Fecha Cobro</label>
-            <input [(ngModel)]="ticket.fechaCobro" name="fecha" type="date" class="form-control" id="inputFecha">
+            <input [(ngModel)]="ticket.fechaCompra" name="fecha" required type="date" class="form-control"
+                id="inputFecha">
         </div>
-        <div class="col-12" *ngIf="ticket.tipoEspectador && ticket.precioReal && ticket.precioCobrado">
-            <label for="inputPrecioC" class="form-label">Precio Cobrado: {{ticket.precioCobrado}}</label>
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-primary" [disabled]="!ticketForm.form.valid">
+                <span *ngIf="ticket._id != null">Guardar Cambios</span>
+                <span *ngIf="ticket._id == null">Registrar</span>
+            </button>
         </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary" (click)="registrarTicket()">Registrar</button>
+        <div class="col-md-6">
+            <button type="reset" class="btn btn-primary" (click)="limpiarCampos()"> Limpiar
+            </button>
         </div>
     </form>
     <br>
 
-    <table class="table">
-        <tr>
-            <th>
-                Cantidad Extranjero
-            </th>
-            <td>{{ticketExt}}</td> 
-        </tr>
-        <tr>
-            <th>
-                Cantidad Local
-            </th>
-            <td>{{ticketLoc}}</td> 
-        </tr>
-        <tr>
-            <th>
-                Cantidad Total
-            </th>
-            <td>{{ticketTot}}</td> 
-        </tr>
-        <tr>
-            <th>
-                Dinero Extranjero
-            </th>
-            <td>{{recaudadoExt}}</td> 
-        </tr>
-        <tr>
-            <th>
-                Dinero Local
-            </th>
-            <td>{{recaudadoLoc}}</td> 
-        </tr>
-        <tr>
-            <th>
-                Dinero Total
-            </th>
-            <td>{{recaudadoTot}}</td> 
-        </tr>
-        <tbody>
+    <div class="container">
+        <label>Filtrar por Categoria de Espectador</label>
+        <div class="d-flex">
+            <select [(ngModel)]="categoria" name="tipoEspectador" id="inputTipoEspectador" class="form-select">
+                <option disabled selected>Seleccione una categoria de espectador</option>
+                <option value="l">Local</option>
+                <option value="e">Extranjero</option>
+            </select>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary" (click)="obtenerTicketsEspectador()"> Obtener Tickets
+                    Espectadores</button>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary" (click)="obtenerTickets()"> Obtener Todos los
+                    Tickets</button>
+            </div>
+        </div>
 
-        </tbody>
-    </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Precio Ticket</th>
+                    <th>Fecha Compra</th>
+                    <th>Espectador</th>
+                    <th>Tipo Espectador</th>
+                    <th>Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let t of arrayTickets">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>DNI</th>
-                <th>Tipo Espectador</th>
-                <th>Precio Real</th>
-                <th>Precio Cobrado</th>
-                <th>Fecha Cobro</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let t of arrayTickets">
-                <td>
-                    {{t.dni}}
-                </td>
-                <td>
-                    {{t.tipoEspectador | espectador}}
-                </td>
-                <td>
-                    {{t.precioReal}}
-                </td>
-                <td>
-                    {{t.precioCobrado}}
-                </td>
-                <td>
-                    {{t.fechaCobro | date:"dd/MM/yyyy"}}
-                </td>
-                <td>
-                    <button class="btn btn-primary" (click)="mostrarTicket(t)">Editar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    <td>
+                        {{t.precioTicket}}
+                    </td>
+                    <td>
+                        {{t.fechaCompra | date:"dd/MM/yyyy"}}
+                    </td>
+                    <td>
+                        {{t.espectador.nombre}}
+                        {{t.espectador.apellido}}
+                    </td>
+                    <td>
+                        {{t.categoriaEspectador | espectador}}
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" (click)="mostrarTicket(t)">Editar</button>
+                        <button class="btn btn-primary" (click)="eliminarTicket(t)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>

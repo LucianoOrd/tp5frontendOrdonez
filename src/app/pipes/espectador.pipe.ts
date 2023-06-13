@@ -9,7 +9,7 @@ export class EspectadorPipe implements PipeTransform {
     if (value === "e"){
       return "Extranjero";
     }
-    if (value === "l"){
+    if (value === "l" || value === "local"){
       return "Local";
     }
     return "Desconocido";
