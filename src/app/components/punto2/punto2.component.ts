@@ -58,6 +58,15 @@ export class Punto2Component {
     )
   }
 
+  public calculoTasaConversion(){
+    let calculo: number;
+    if(this.transaccion.cantidadOrigen >0 && this.transaccion.tasaConversion >0){
+      calculo = this.transaccion.cantidadOrigen * this.transaccion.tasaConversion;
+      this.transaccion.cantidadDestino = calculo;
+      console.log("entre");
+    }
+  }
+
   public convertir() {
     this.transaccionService.getConversion(this.transaccion.cantidadOrigen, this.transaccion.monedaOrigen, this.transaccion.monedaDestino).subscribe(
       result => { 

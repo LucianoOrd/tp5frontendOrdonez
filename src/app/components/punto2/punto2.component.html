@@ -143,19 +143,20 @@
                     <form>
                         <div class="form-group">
                             <label class="fw-bold" for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" [(ngModel)]="transaccion.emailCliente">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                                [(ngModel)]="transaccion.emailCliente">
                         </div>
                         <div class="form-group">
                             <label class="fw-bold" for="cantidad">Cantidad</label>
-                            <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Cantidad" [(ngModel)]="transaccion.cantidadOrigen">
+                            <input type="number" class="form-control" id="cantidad" name="cantidad"
+                                placeholder="Cantidad" (change)="calculoTasaConversion()"
+                                [(ngModel)]="transaccion.cantidadOrigen">
                         </div>
-                        <div class="form-group">
-                            <label class="fw-bold" for="cantidad">Tasa de Conversion</label>
-                            <input type="number" class="form-control" id="tasa" name="tasa" placeholder="Tasa de Conversion" [(ngModel)]="transaccion.tasaConversion">
-                        </div>
+
                         <div class="form-group">
                             <label class="fw-bold" for="origen">De</label>
-                            <select class="form-control" id="origen" name="origen" [(ngModel)]="transaccion.monedaOrigen">
+                            <select class="form-control" id="origen" name="origen"
+                                [(ngModel)]="transaccion.monedaOrigen">
                                 <option>USD Dólares EEUU</option>
                                 <option>EUROS</option>
                                 <option>BRL BRAZIL</option>
@@ -164,7 +165,8 @@
                         </div>
                         <div class="form-group">
                             <label class="fw-bold" for="destino">A</label>
-                            <select class="form-control" id="destino" name="destino" [(ngModel)]="transaccion.monedaDestino">
+                            <select class="form-control" id="destino" name="destino"
+                                [(ngModel)]="transaccion.monedaDestino">
                                 <option>USD Dólares EEUU</option>
                                 <option>EUROS</option>
                                 <option>BRL BRAZIL</option>
@@ -173,16 +175,24 @@
                         </div>
                         <br>
                         <div class="form-group">
-                            <input type="number" class="form-control" id="resultado" name="resultado" [(ngModel)]="transaccion.cantidadDestino">
+                            <label class="fw-bold" for="cantidad">Tasa de Conversion</label>
+                            <input type="number" class="form-control" id="tasa" name="tasa"
+                                placeholder="Tasa de Conversion" (change)="calculoTasaConversion()"
+                                [(ngModel)]="transaccion.tasaConversion">
+                        </div>
+                        <div class="form-group">
+                            <label id="resultado" class="fw-bold" name="resultado"
+                                *ngIf="transaccion.cantidadOrigen >0 && transaccion.tasaConversion >0">Cantidad: ${{transaccion.cantidadDestino}}</label>
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-block btn-warning mb-3 me-2" (click)="agregarTransaccion()">
+                        <button type="submit" class="btn btn-block btn-warning mb-3 me-2"
+                            (click)="agregarTransaccion()">
                             Dar alta <i class="bi bi-plus-circle-fill"></i>
                         </button>
                         <button type="submit" class="btn btn-block btn-warning mb-3" (click)="obtenerTransacciones()">
                             Recuperar Transacciones <i class="bi bi-arrow-up-circle-fill"></i>
                         </button>
-                        
+
                     </form>
                 </div>
             </div>
@@ -206,21 +216,21 @@
         </div>
         <table class="table">
             <thead>
-              <tr>
-                <th scope="col">Moneda Origen</th>
-                <th scope="col">Cantidad Origen</th>
-                <th scope="col">Moneda Destino</th>
-                <th scope="col">Cantidad Destino</th>
-              </tr>
+                <tr>
+                    <th scope="col">Moneda Origen</th>
+                    <th scope="col">Cantidad Origen</th>
+                    <th scope="col">Moneda Destino</th>
+                    <th scope="col">Cantidad Destino</th>
+                </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of arrayTransaccion">
-                  <td>{{item.monedaOrigen}}</td>
-                  <td>{{item.cantidadOrigen}}</td>
-                  <td>{{item.monedaDestino}}</td>
-                  <td>{{item.cantidadDestino}}</td>
+                    <td>{{item.monedaOrigen}}</td>
+                    <td>{{item.cantidadOrigen}}</td>
+                    <td>{{item.monedaDestino}}</td>
+                    <td>{{item.cantidadDestino}}</td>
                 </tr>
-              </tbody>
-          </table>
+            </tbody>
+        </table>
     </div>
 </div>
