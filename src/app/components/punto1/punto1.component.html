@@ -24,14 +24,14 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="../../../assets/gabinete.jpg" class="d-block imgProducto mx-auto img-fluid">
-                    <div class="carousel-caption d-none d-md-block text-black mt-4">
+                    <div class="carousel-caption d-none d-md-block bg-secondary text-white bg-opacity-50 mt-4">
                         <h5>Gabinete</h5>
                         <p>Gabinete con luces LED</p>
                     </div>
                 </div>
                 <div class="carousel-item" *ngFor="let p of arrayProducto">
                     <img src={{p.imagen}} class="d-block mx-auto img-fluid imgProducto">
-                    <div class="carousel-caption d-none d-md-block text-black mt-4">
+                    <div class="carousel-caption d-none d-md-block mt-4 bg-secondary text-white bg-opacity-50">
                         <h5>{{p.nombre}}</h5>
                         <p>{{p.descripcion}}</p>
                     </div>
