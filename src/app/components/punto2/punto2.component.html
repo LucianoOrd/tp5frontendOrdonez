@@ -1,4 +1,5 @@
 <div class="container text-white my-3">
+    <h1 class="my-5 text-center text-black">Gestion de Transacciones</h1>
     <div class="row">
         <div class="col-md-8 table-responsive d-sm-none d-md-block d-none d-sm-block">
             <div class="bg-info text-center font-weight-bold py-2">
@@ -141,19 +142,19 @@
                 <div class="col-12">
                     <form>
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label class="fw-bold" for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email" [(ngModel)]="transaccion.emailCliente">
                         </div>
                         <div class="form-group">
-                            <label for="cantidad">Cantidad</label>
+                            <label class="fw-bold" for="cantidad">Cantidad</label>
                             <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Cantidad" [(ngModel)]="transaccion.cantidadOrigen">
                         </div>
                         <div class="form-group">
-                            <label for="cantidad">Tasa de Conversion</label>
+                            <label class="fw-bold" for="cantidad">Tasa de Conversion</label>
                             <input type="number" class="form-control" id="tasa" name="tasa" placeholder="Tasa de Conversion" [(ngModel)]="transaccion.tasaConversion">
                         </div>
                         <div class="form-group">
-                            <label for="origen">De</label>
+                            <label class="fw-bold" for="origen">De</label>
                             <select class="form-control" id="origen" name="origen" [(ngModel)]="transaccion.monedaOrigen">
                                 <option>USD Dólares EEUU</option>
                                 <option>EUROS</option>
@@ -162,7 +163,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="destino">A</label>
+                            <label class="fw-bold" for="destino">A</label>
                             <select class="form-control" id="destino" name="destino" [(ngModel)]="transaccion.monedaDestino">
                                 <option>USD Dólares EEUU</option>
                                 <option>EUROS</option>
@@ -175,11 +176,11 @@
                             <input type="number" class="form-control" id="resultado" name="resultado" [(ngModel)]="transaccion.cantidadDestino">
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-block btn-warning mb-3" (click)="agregarTransaccion()">
-                            Dar alta
+                        <button type="submit" class="btn btn-block btn-warning mb-3 me-2" (click)="agregarTransaccion()">
+                            Dar alta <i class="bi bi-plus-circle-fill"></i>
                         </button>
                         <button type="submit" class="btn btn-block btn-warning mb-3" (click)="obtenerTransacciones()">
-                            Recuperar Transacciones
+                            Recuperar Transacciones <i class="bi bi-arrow-up-circle-fill"></i>
                         </button>
                         
                     </form>
@@ -189,6 +190,7 @@
     </div>
 
     <div class="container my-3 table-responsive">
+        <label class="text-black fw-bold">Filtrar por Moneda</label>
         <select class="form-select" name="moneda" id="moneda" [(ngModel)]="moneda">
             <option value="ARS">ARS Pesos Argentinos</option>
             <option value="BRL">BRL BRAZIL</option>
@@ -197,7 +199,7 @@
         </select>
         <br>
         <button type="submit" class="btn btn-block btn-warning mb-3" (click)="obtenerTransaccionesMoneda()">
-            Recuperar por Filtro
+            Recuperar por Filtro <i class="bi bi-funnel-fill"></i>
         </button>
         <div>
             Consultas

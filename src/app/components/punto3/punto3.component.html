@@ -1,12 +1,13 @@
 <div class="container">
+    <h1 class="my-5 text-center">Gestion de Tickets</h1>
     <form novalidate (ngSubmit)="agregarEditarTicket()" #ticketForm="ngForm" class="row g-3">
         <div class="col-md-6">
-            <label for="inputPrecioR" class="form-label">Precio Ticket</label>
+            <label for="inputPrecioR" class="form-label fw-bold">Precio Ticket</label>
             <input [(ngModel)]="ticket.precioTicket" required name="precior" type="number" class="form-control"
                 id="inputPrecioR" placeholder="123$">
         </div>
         <div class="col-md-6">
-            <label for="inputTipoEspectador" class="form-label">Tipo Espectador</label>
+            <label for="inputTipoEspectador" class="form-label fw-bold">Tipo Espectador</label>
             <select [(ngModel)]="ticket.categoriaEspectador" name="tipoEspectador" id="inputTipoEspectador"
                 class="form-select">
                 <option value="l">Local</option>
@@ -14,44 +15,44 @@
             </select>
         </div>
         <div class="col-md-10">
-            <label for="inputEspectador" class="form-label">Espectador</label>
+            <label for="inputEspectador" class="form-label fw-bold">Espectador</label>
             <select [(ngModel)]="ticket.espectador" name="espectador" id="inputEspectador" class="form-select">
                 <option *ngFor="let e of arrayEspectador" [ngValue]="e">{{e.dni}} {{e.nombre}} {{e.apellido}}</option>
             </select>
         </div>
         <div class="col-md-2">
-            <label for="inputFecha" class="form-label">Fecha Cobro</label>
+            <label for="inputFecha" class="form-label fw-bold">Fecha Cobro</label>
             <input [(ngModel)]="ticket.fechaCompra" name="fecha" required type="date" class="form-control"
                 id="inputFecha">
         </div>
         <div class="col-md-6">
-            <button type="submit" class="btn btn-primary" [disabled]="!ticketForm.form.valid">
-                <span *ngIf="ticket._id != null">Guardar Cambios</span>
-                <span *ngIf="ticket._id == null">Registrar</span>
+            <button type="submit" class="btn btn-success" [disabled]="!ticketForm.form.valid">
+                <span *ngIf="ticket._id != null">Guardar Cambios <i class="bi bi-arrow-bar-up"></i></span>
+                <span *ngIf="ticket._id == null">Registrar <i class="bi bi-plus-circle"></i></span>
             </button>
         </div>
         <div class="col-md-6">
-            <button type="reset" class="btn btn-primary" (click)="limpiarCampos()"> Limpiar
+            <button type="reset" class="btn btn-warning" (click)="limpiarCampos()"> Limpiar <i class="bi bi-arrow-repeat"></i>
             </button>
         </div>
     </form>
     <br>
 
     <div class="container">
-        <label>Filtrar por Categoria de Espectador</label>
+        <label class="fw-bold">Filtrar por Categoria de Espectador</label>
         <div class="d-flex">
-            <select [(ngModel)]="categoria" name="tipoEspectador" id="inputTipoEspectador" class="form-select">
+            <select [(ngModel)]="categoria" name="tipoEspectador" id="inputTipoEspectador" class="form-select" >
                 <option disabled selected>Seleccione una categoria de espectador</option>
                 <option value="l">Local</option>
                 <option value="e">Extranjero</option>
             </select>
-            <div class="col-md-4">
+            <div class="col-md-4 ms-2">
                 <button type="submit" class="btn btn-primary" (click)="obtenerTicketsEspectador()"> Obtener Tickets
-                    Espectadores</button>
+                    Espectadores <i class="bi bi-people-fill"></i></button>
             </div>
             <div class="col-md-4">
                 <button type="submit" class="btn btn-primary" (click)="obtenerTickets()"> Obtener Todos los
-                    Tickets</button>
+                    Tickets <i class="bi bi-ticket-perforated-fill"></i></button>
             </div>
         </div>
 
@@ -82,8 +83,8 @@
                         {{t.categoriaEspectador | espectador}}
                     </td>
                     <td>
-                        <button class="btn btn-primary" (click)="mostrarTicket(t)">Editar</button>
-                        <button class="btn btn-primary" (click)="eliminarTicket(t)">Eliminar</button>
+                        <button class="btn btn-warning me-2" (click)="mostrarTicket(t)">Editar <i class="bi bi-pencil-fill"></i></button>
+                        <button class="btn btn-danger" (click)="eliminarTicket(t)">Eliminar <i class="bi bi-trash-fill"></i></button>
                     </td>
                 </tr>
             </tbody>

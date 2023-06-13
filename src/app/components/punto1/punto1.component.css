@@ -1,0 +1,6 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+.imgProducto{
+    width: auto;
+    height: 500px;
+    max-height: 500px;
+}
