@@ -10,19 +10,21 @@
             <label for="inputTipoEspectador" class="form-label fw-bold">Tipo Espectador</label>
             <select [(ngModel)]="ticket.categoriaEspectador" name="tipoEspectador" id="inputTipoEspectador"
                 class="form-select">
+                <option disabled selected>Seleccione Categoria</option>
                 <option value="l">Local</option>
                 <option value="e">Extranjero</option>
             </select>
         </div>
         <div class="col-md-10">
             <label for="inputEspectador" class="form-label fw-bold">Espectador</label>
-            <select [(ngModel)]="ticket.espectador" name="espectador" id="inputEspectador" class="form-select">
+            <select [(ngModel)]="espectadorSelect" name="espectador" id="inputEspectador" class="form-select">
+                <option [ngValue]="null" disabled selected>Seleccione Espectador</option>
                 <option *ngFor="let e of arrayEspectador" [ngValue]="e">{{e.dni}} {{e.nombre}} {{e.apellido}}</option>
             </select>
         </div>
         <div class="col-md-2">
-            <label for="inputFecha" class="form-label fw-bold">Fecha Cobro</label>
-            <input [(ngModel)]="ticket.fechaCompra" name="fecha" required type="date" class="form-control"
+            <label for="inputFecha" class="form-label fw-bold">Fecha Compra</label>
+            <input [(ngModel)]="fecha" name="fecha" required type="date" class="form-control"
                 id="inputFecha">
         </div>
         <div class="col-md-6">
