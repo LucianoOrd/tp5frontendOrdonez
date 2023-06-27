@@ -11,8 +11,8 @@ export class Punto2Component {
 
   transaccion!: Transaccion;
   arrayTransaccion !: Array<Transaccion>;
-  moneda !: string;
-
+  monedaOr !: string;
+  monedaDes !: string;
   constructor(private transaccionService: DivisaService){
     this.arrayTransaccion = new Array();
     this.transaccion = new Transaccion;
@@ -42,7 +42,7 @@ export class Punto2Component {
   }
 
   public obtenerTransaccionesMoneda(){
-    this.transaccionService.getTransaccionMonedas(this.moneda).subscribe(
+    this.transaccionService.getTransaccionMonedas(this.monedaOr, this.monedaDes).subscribe(
       (result) => {
         this.arrayTransaccion = new Array<Transaccion>;
         result.forEach((element: Transaccion) => {

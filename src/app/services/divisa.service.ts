@@ -32,13 +32,38 @@ export class DivisaService {
     return this._http.get(this.urlBase , httpOptions );
   }
 
-  getTransaccionMonedas(moneda: string):Observable<any>{
+  getTransaccionMonedas(monedaOr: string, monedaDes: string):Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({
 
-      })
-    };   
-    return this._http.get(this.urlBase+"/divisas/"+moneda , httpOptions );
+      }), 
+      params: new HttpParams()
+      
+    };
+    
+    //se controlan los parametros para crear la url
+    if(monedaOr){
+      httpOptions.params = httpOptions.params.set('monedaOrigen', monedaOr);
+    }
+    if(monedaDes){
+      httpOptions.params = httpOptions.params.set('monedaDestino', monedaDes);
+    }
+    
+    return this._http.get(this.urlBase+"/divisas/", httpOptions );
+    /* let params = ''
+    if(monedaOr){
+      params += 'monedaOrigen='+ monedaOr;
+      console.log('entro')
+    }
+    if(monedaOr && monedaDes){
+      params += "&";
+    }
+    if(monedaDes){
+      params += 'monedaDestino='+ monedaDes;
+    }
+    console.log(this.urlBase+"/divisas/?"+ params)
+    return this._http.get(this.urlBase+"/divisas/?"+ params ); */
+    
   }
 
   urlAPI = 'https://community-neutrino-currency-conversion.p.rapidapi.com/convert';

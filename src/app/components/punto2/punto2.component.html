@@ -200,8 +200,17 @@
     </div>
 
     <div class="container my-3 table-responsive">
-        <label class="text-black fw-bold">Filtrar por Moneda</label>
-        <select class="form-select" name="moneda" id="moneda" [(ngModel)]="moneda">
+        <label class="text-black fw-bold">Filtrar por Moneda Origen</label>
+        <select class="form-select" name="monedaOr" id="monedaOr" [(ngModel)]="monedaOr">
+            <option value="">Seleccione una moneda</option>
+            <option value="ARS">ARS Pesos Argentinos</option>
+            <option value="BRL">BRL BRAZIL</option>
+            <option value="USD">USD Dólares EEUU</option>
+            <option value="EUROS">EUROS</option>
+        </select>
+        <label class="text-black fw-bold">Filtrar por Moneda Destino</label>
+        <select class="form-select" name="monedaDes" id="monedaDes" [(ngModel)]="monedaDes">
+            <option value="">Seleccione una moneda</option>
             <option value="ARS">ARS Pesos Argentinos</option>
             <option value="BRL">BRL BRAZIL</option>
             <option value="USD">USD Dólares EEUU</option>
